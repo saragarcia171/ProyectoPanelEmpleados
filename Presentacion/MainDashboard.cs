@@ -203,6 +203,20 @@ namespace ProyectoPanelEmpleados.Presentacion
             btnEliminar.FlatAppearance.BorderSize = 0;
 
             this.Controls.Add(btnEliminar);
+
+            btnEliminar.Click += BtnEliminar_Click;
+        }
+        private void BtnEliminar_Click(
+    object sender,
+    EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count > 0)
+            {
+                int fila =
+                    dgvEmpleados.SelectedRows[0].Index;
+
+                dgvEmpleados.Rows.RemoveAt(fila);
+            }
         }
 
         private void BtnAgregar_Click(
