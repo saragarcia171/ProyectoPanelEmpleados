@@ -27,7 +27,6 @@ namespace ProyectoPanelEmpleados.Presentacion
             controller = new EmpleadoController(
                 new EmpleadoRepository());
 
-            InitializeComponent();
 
             ConfigurarUI();
         }
