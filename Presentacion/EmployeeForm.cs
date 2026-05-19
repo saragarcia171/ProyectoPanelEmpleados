@@ -110,6 +110,18 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             // BOTÓN GUARDAR
 
+            btnGuardar.Click += (s, e) =>
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            };
+
+            btnCancelar.Click += (s, e) =>
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            };
+
             btnGuardar = new Button();
 
             btnGuardar.Text = "Guardar";

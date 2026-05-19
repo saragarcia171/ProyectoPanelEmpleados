@@ -2,6 +2,8 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using ProyectoPanelEmpleados.Controladores;
+using ProyectoPanelEmpleados.Fabricas;
+using ProyectoPanelEmpleados.Modelos;
 using ProyectoPanelEmpleados.Repositorios;
 
 namespace ProyectoPanelEmpleados.Presentacion
@@ -22,19 +24,18 @@ namespace ProyectoPanelEmpleados.Presentacion
 
         private readonly EmpleadoController controller;
 
+        private int contadorId = 1;
+
         public MainDashboard()
         {
             controller = new EmpleadoController(
                 new EmpleadoRepository());
-
 
             ConfigurarUI();
         }
 
         private void ConfigurarUI()
         {
-            // CONFIGURACIÓN GENERAL
-
             this.Text = "EmployeeHub";
 
             this.Size = new Size(1200, 700);
@@ -59,80 +60,9 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             sidebar.Dock = DockStyle.Left;
 
-            // BOTÓN INICIO
+            this.Controls.Add(sidebar);
 
-            Button btnInicio = new Button();
-
-            btnInicio.Text = "Inicio";
-
-            btnInicio.Size = new Size(180, 45);
-
-            btnInicio.Location =
-                new Point(20, 50);
-
-            btnInicio.BackColor =
-                ColorTranslator.FromHtml("#3B82F6");
-
-            btnInicio.ForeColor = Color.White;
-
-            btnInicio.FlatStyle =
-                FlatStyle.Flat;
-
-            btnInicio.FlatAppearance.BorderSize = 0;
-
-            // BOTÓN EMPLEADOS
-
-            Button btnEmpleados = new Button();
-
-            btnEmpleados.Text = "Empleados";
-
-            btnEmpleados.Size = new Size(180, 45);
-
-            btnEmpleados.Location =
-                new Point(20, 115);
-
-            btnEmpleados.BackColor =
-                ColorTranslator.FromHtml("#3B82F6");
-
-            btnEmpleados.ForeColor = Color.White;
-
-            btnEmpleados.FlatStyle =
-                FlatStyle.Flat;
-
-            btnEmpleados.FlatAppearance.BorderSize = 0;
-
-            // BOTÓN LIQUIDACIONES
-
-            Button btnLiquidaciones = new Button();
-
-            btnLiquidaciones.Text = "Liquidaciones";
-
-            btnLiquidaciones.Size =
-                new Size(180, 45);
-
-            btnLiquidaciones.Location =
-                new Point(20, 180);
-
-            btnLiquidaciones.BackColor =
-                ColorTranslator.FromHtml("#3B82F6");
-
-            btnLiquidaciones.ForeColor =
-                Color.White;
-
-            btnLiquidaciones.FlatStyle =
-                FlatStyle.Flat;
-
-            btnLiquidaciones.FlatAppearance.BorderSize = 0;
-
-            // AGREGAR BOTONES AL SIDEBAR
-
-            sidebar.Controls.Add(btnInicio);
-
-            sidebar.Controls.Add(btnEmpleados);
-
-            sidebar.Controls.Add(btnLiquidaciones);
-
-            // TÍTULO PRINCIPAL
+            // TÍTULO
 
             lblTitulo = new Label();
 
@@ -145,15 +75,14 @@ namespace ProyectoPanelEmpleados.Presentacion
                     22,
                     FontStyle.Bold);
 
-            lblTitulo.ForeColor =
-                ColorTranslator.FromHtml("#1E3A5F");
-
             lblTitulo.Location =
                 new Point(260, 40);
 
             lblTitulo.AutoSize = true;
 
-            // TABLA EMPLEADOS
+            this.Controls.Add(lblTitulo);
+
+            // TABLA
 
             dgvEmpleados = new DataGridView();
 
@@ -177,25 +106,12 @@ namespace ProyectoPanelEmpleados.Presentacion
             dgvEmpleados.ColumnHeadersDefaultCellStyle.ForeColor =
                 Color.White;
 
-            dgvEmpleados.ColumnHeadersDefaultCellStyle.Font =
-                new Font(
-                    "Segoe UI",
-                    10,
-                    FontStyle.Bold);
-
-            dgvEmpleados.ColumnHeadersHeight = 40;
-
-            dgvEmpleados.RowTemplate.Height = 35;
-
-            dgvEmpleados.SelectionMode =
-                DataGridViewSelectionMode.FullRowSelect;
-
-            dgvEmpleados.MultiSelect = false;
-
             dgvEmpleados.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
 
-            // COLUMNAS
+            dgvEmpleados.Columns.Add(
+                "Id",
+                "ID");
 
             dgvEmpleados.Columns.Add(
                 "Nombre",
@@ -203,11 +119,13 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             dgvEmpleados.Columns.Add(
                 "Tipo",
-                "Tipo Contrato");
+                "Tipo");
 
             dgvEmpleados.Columns.Add(
                 "Salario",
                 "Salario");
+
+            this.Controls.Add(dgvEmpleados);
 
             // BOTÓN AGREGAR
 
@@ -215,21 +133,26 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             btnAgregar.Text = "Agregar";
 
+            btnAgregar.Size =
+                new Size(130, 45);
+
+            btnAgregar.Location =
+                new Point(280, 540);
+
             btnAgregar.BackColor =
                 ColorTranslator.FromHtml("#3B82F6");
 
-            btnAgregar.ForeColor = Color.White;
+            btnAgregar.ForeColor =
+                Color.White;
 
             btnAgregar.FlatStyle =
                 FlatStyle.Flat;
 
             btnAgregar.FlatAppearance.BorderSize = 0;
 
-            btnAgregar.Size =
-                new Size(130, 45);
+            btnAgregar.Click += BtnAgregar_Click;
 
-            btnAgregar.Location =
-                new Point(280, 540);
+            this.Controls.Add(btnAgregar);
 
             // BOTÓN EDITAR
 
@@ -237,21 +160,24 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             btnEditar.Text = "Editar";
 
+            btnEditar.Size =
+                new Size(130, 45);
+
+            btnEditar.Location =
+                new Point(430, 540);
+
             btnEditar.BackColor =
                 ColorTranslator.FromHtml("#10B981");
 
-            btnEditar.ForeColor = Color.White;
+            btnEditar.ForeColor =
+                Color.White;
 
             btnEditar.FlatStyle =
                 FlatStyle.Flat;
 
             btnEditar.FlatAppearance.BorderSize = 0;
 
-            btnEditar.Size =
-                new Size(130, 45);
-
-            btnEditar.Location =
-                new Point(430, 540);
+            this.Controls.Add(btnEditar);
 
             // BOTÓN ELIMINAR
 
@@ -259,35 +185,52 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             btnEliminar.Text = "Eliminar";
 
-            btnEliminar.BackColor =
-                ColorTranslator.FromHtml("#EF4444");
-
-            btnEliminar.ForeColor = Color.White;
-
-            btnEliminar.FlatStyle =
-                FlatStyle.Flat;
-
-            btnEliminar.FlatAppearance.BorderSize = 0;
-
             btnEliminar.Size =
                 new Size(130, 45);
 
             btnEliminar.Location =
                 new Point(580, 540);
 
-            // AGREGAR CONTROLES
+            btnEliminar.BackColor =
+                ColorTranslator.FromHtml("#EF4444");
 
-            this.Controls.Add(sidebar);
+            btnEliminar.ForeColor =
+                Color.White;
 
-            this.Controls.Add(lblTitulo);
+            btnEliminar.FlatStyle =
+                FlatStyle.Flat;
 
-            this.Controls.Add(dgvEmpleados);
-
-            this.Controls.Add(btnAgregar);
-
-            this.Controls.Add(btnEditar);
+            btnEliminar.FlatAppearance.BorderSize = 0;
 
             this.Controls.Add(btnEliminar);
+        }
+
+        private void BtnAgregar_Click(
+            object sender,
+            EventArgs e)
+        {
+            EmployeeForm form =
+                new EmployeeForm();
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Empleado empleado =
+                    EmpleadoFactory.CrearEmpleado(
+                        form.cbTipoContrato.Text,
+                        form.txtNombre.Text,
+                        decimal.Parse(form.txtSalario.Text));
+
+                empleado.Id = contadorId++;
+
+                controller.RegistrarEmpleado(
+                    empleado);
+
+                dgvEmpleados.Rows.Add(
+                    empleado.Id,
+                    empleado.Nombre,
+                    form.cbTipoContrato.Text,
+                    empleado.CalcularSalario());
+            }
         }
     }
 }
