@@ -109,6 +109,14 @@ namespace ProyectoPanelEmpleados.Presentacion
             dgvEmpleados.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
 
+            dgvEmpleados.RowHeadersVisible = false;
+
+            dgvEmpleados.DefaultCellStyle.SelectionBackColor =
+                ColorTranslator.FromHtml("#DBEAFE");
+
+            dgvEmpleados.DefaultCellStyle.SelectionForeColor =
+                Color.Black;
+
             dgvEmpleados.Columns.Add(
                 "Id",
                 "ID");
@@ -150,6 +158,8 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             btnAgregar.FlatAppearance.BorderSize = 0;
 
+            btnAgregar.Cursor = Cursors.Hand;
+
             btnAgregar.Click += BtnAgregar_Click;
 
             this.Controls.Add(btnAgregar);
@@ -177,6 +187,8 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             btnEditar.FlatAppearance.BorderSize = 0;
 
+            btnEditar.Cursor = Cursors.Hand;
+
             this.Controls.Add(btnEditar);
 
             // BOTÓN ELIMINAR
@@ -201,6 +213,8 @@ namespace ProyectoPanelEmpleados.Presentacion
                 FlatStyle.Flat;
 
             btnEliminar.FlatAppearance.BorderSize = 0;
+
+            btnEliminar.Cursor = Cursors.Hand;
 
             this.Controls.Add(btnEliminar);
 
