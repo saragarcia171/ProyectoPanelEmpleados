@@ -7,14 +7,12 @@ namespace ProyectoPanelEmpleados.Presentacion
     public partial class EmployeeForm : Form
     {
         public TextBox txtNombre;
-
         public TextBox txtSalario;
 
         public ComboBox cbTipoContrato;
 
-        public Button btnGuardar;
-
-        public Button btnCancelar;
+        private Button btnGuardar;
+        private Button btnCancelar;
 
         public EmployeeForm()
         {
@@ -23,81 +21,131 @@ namespace ProyectoPanelEmpleados.Presentacion
 
         private void ConfigurarFormulario()
         {
-            this.Text = "Registrar Empleado";
+            this.Text =
+                "Registrar Empleado";
 
-            this.Size = new Size(500, 420);
+            this.Size =
+                new Size(400, 350);
 
             this.StartPosition =
-                FormStartPosition.CenterScreen;
+                FormStartPosition.CenterParent;
 
             this.BackColor =
-                ColorTranslator.FromHtml("#F3F4F6");
+                Color.White;
 
-            this.Font =
-                new Font("Segoe UI", 10);
+            this.FormBorderStyle =
+                FormBorderStyle.FixedDialog;
 
+            this.MaximizeBox = false;
+
+            // =========================
             // LABEL NOMBRE
+            // =========================
 
             Label lblNombre = new Label();
 
-            lblNombre.Text = "Nombre";
+            lblNombre.Text =
+                "Nombre";
 
             lblNombre.Location =
-                new Point(40, 40);
+                new Point(30, 40);
 
             lblNombre.AutoSize = true;
 
+            lblNombre.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            this.Controls.Add(lblNombre);
+
+            // =========================
             // TEXTBOX NOMBRE
+            // =========================
 
             txtNombre = new TextBox();
 
             txtNombre.Location =
-                new Point(40, 70);
+                new Point(30, 70);
 
             txtNombre.Size =
-                new Size(380, 30);
+                new Size(320, 30);
 
+            this.Controls.Add(txtNombre);
+
+            // =========================
             // LABEL SALARIO
+            // =========================
 
             Label lblSalario = new Label();
 
-            lblSalario.Text = "Salario";
+            lblSalario.Text =
+                "Salario";
 
             lblSalario.Location =
-                new Point(40, 120);
+                new Point(30, 115);
 
             lblSalario.AutoSize = true;
 
+            lblSalario.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            this.Controls.Add(lblSalario);
+
+            // =========================
             // TEXTBOX SALARIO
+            // =========================
 
             txtSalario = new TextBox();
 
             txtSalario.Location =
-                new Point(40, 150);
+                new Point(30, 145);
 
             txtSalario.Size =
-                new Size(380, 30);
+                new Size(320, 30);
 
-            // LABEL TIPO
+            this.Controls.Add(txtSalario);
 
-            Label lblTipo = new Label();
+            // =========================
+            // LABEL CONTRATO
+            // =========================
 
-            lblTipo.Text = "Tipo de contrato";
+            Label lblContrato = new Label();
 
-            lblTipo.Location =
-                new Point(40, 200);
+            lblContrato.Text =
+                "Tipo de contrato";
 
-            lblTipo.AutoSize = true;
+            lblContrato.Location =
+                new Point(30, 190);
 
+            lblContrato.AutoSize = true;
+
+            lblContrato.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            this.Controls.Add(lblContrato);
+
+            // =========================
             // COMBOBOX
+            // =========================
 
             cbTipoContrato = new ComboBox();
 
             cbTipoContrato.Location =
-                new Point(40, 230);
+                new Point(30, 220);
 
             cbTipoContrato.Size =
-                new Size(380, 30);
+                new Size(320, 30);
+
+            cbTipoContrato.DropDownStyle =
+                ComboBoxStyle.DropDownList;
 
             cbTipoContrato.Items.Add(
                 "Tiempo Completo");
@@ -108,32 +156,25 @@ namespace ProyectoPanelEmpleados.Presentacion
             cbTipoContrato.Items.Add(
                 "Freelance");
 
+            this.Controls.Add(cbTipoContrato);
+
+            // =========================
             // BOTÓN GUARDAR
-
-            btnGuardar.Click += (s, e) =>
-            {
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            };
-
-            btnCancelar.Click += (s, e) =>
-            {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
-            };
+            // =========================
 
             btnGuardar = new Button();
 
-            btnGuardar.Text = "Guardar";
+            btnGuardar.Text =
+                "Guardar";
 
             btnGuardar.Size =
-                new Size(130, 45);
+                new Size(120, 40);
 
             btnGuardar.Location =
-                new Point(40, 310);
+                new Point(30, 270);
 
             btnGuardar.BackColor =
-                ColorTranslator.FromHtml("#3B82F6");
+                ColorTranslator.FromHtml("#10B981");
 
             btnGuardar.ForeColor =
                 Color.White;
@@ -141,19 +182,31 @@ namespace ProyectoPanelEmpleados.Presentacion
             btnGuardar.FlatStyle =
                 FlatStyle.Flat;
 
-            btnGuardar.FlatAppearance.BorderSize = 0;
+            btnGuardar.FlatAppearance.BorderSize =
+                0;
 
+            btnGuardar.Cursor =
+                Cursors.Hand;
+
+            btnGuardar.Click +=
+                BtnGuardar_Click;
+
+            this.Controls.Add(btnGuardar);
+
+            // =========================
             // BOTÓN CANCELAR
+            // =========================
 
             btnCancelar = new Button();
 
-            btnCancelar.Text = "Cancelar";
+            btnCancelar.Text =
+                "Cancelar";
 
             btnCancelar.Size =
-                new Size(130, 45);
+                new Size(120, 40);
 
             btnCancelar.Location =
-                new Point(190, 310);
+                new Point(230, 270);
 
             btnCancelar.BackColor =
                 ColorTranslator.FromHtml("#EF4444");
@@ -164,25 +217,36 @@ namespace ProyectoPanelEmpleados.Presentacion
             btnCancelar.FlatStyle =
                 FlatStyle.Flat;
 
-            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.BorderSize =
+                0;
 
-            // CONTROLES
+            btnCancelar.Cursor =
+                Cursors.Hand;
 
-            this.Controls.Add(lblNombre);
-
-            this.Controls.Add(txtNombre);
-
-            this.Controls.Add(lblSalario);
-
-            this.Controls.Add(txtSalario);
-
-            this.Controls.Add(lblTipo);
-
-            this.Controls.Add(cbTipoContrato);
-
-            this.Controls.Add(btnGuardar);
+            btnCancelar.Click +=
+                BtnCancelar_Click;
 
             this.Controls.Add(btnCancelar);
+        }
+
+        private void BtnGuardar_Click(
+            object? sender,
+            EventArgs e)
+        {
+            this.DialogResult =
+                DialogResult.OK;
+
+            this.Close();
+        }
+
+        private void BtnCancelar_Click(
+            object? sender,
+            EventArgs e)
+        {
+            this.DialogResult =
+                DialogResult.Cancel;
+
+            this.Close();
         }
     }
 }

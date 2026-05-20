@@ -1,6 +1,3 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 using ProyectoPanelEmpleados.Controladores;
 using ProyectoPanelEmpleados.Fabricas;
 using ProyectoPanelEmpleados.Modelos;
@@ -10,35 +7,35 @@ namespace ProyectoPanelEmpleados.Presentacion
 {
     public partial class MainDashboard : Form
     {
-        private Panel sidebar;
+        private readonly EmpleadoController controller;
 
         private DataGridView dgvEmpleados;
 
         private Button btnAgregar;
-
         private Button btnEditar;
-
         private Button btnEliminar;
+        private Button btnLiquidacion;
 
-        private Label lblTitulo;
-
-        private readonly EmpleadoController controller;
+        private Panel sidebar;
 
         private int contadorId = 1;
 
         public MainDashboard()
         {
-            controller = new EmpleadoController(
-                new EmpleadoRepository());
+            controller =
+                new EmpleadoController(
+                    new EmpleadoRepository());
 
             ConfigurarUI();
         }
 
         private void ConfigurarUI()
         {
-            this.Text = "EmployeeHub";
+            this.Text =
+                "Panel de Empleados";
 
-            this.Size = new Size(1200, 700);
+            this.Size =
+                new Size(1100, 650);
 
             this.StartPosition =
                 FormStartPosition.CenterScreen;
@@ -46,51 +43,61 @@ namespace ProyectoPanelEmpleados.Presentacion
             this.BackColor =
                 ColorTranslator.FromHtml("#F3F4F6");
 
-            this.Font =
-                new Font("Segoe UI", 10);
+            this.FormBorderStyle =
+                FormBorderStyle.FixedSingle;
 
+            this.MaximizeBox = false;
+
+            // =========================
             // SIDEBAR
+            // =========================
 
             sidebar = new Panel();
 
-            sidebar.Size = new Size(220, 700);
+            sidebar.Size =
+                new Size(220, this.Height);
+
+            sidebar.Location =
+                new Point(0, 0);
 
             sidebar.BackColor =
-                ColorTranslator.FromHtml("#1E3A5F");
-
-            sidebar.Dock = DockStyle.Left;
+                ColorTranslator.FromHtml("#1E3A8A");
 
             this.Controls.Add(sidebar);
 
-            // TÍTULO
-
-            lblTitulo = new Label();
+            Label lblTitulo = new Label();
 
             lblTitulo.Text =
-                "Panel de Empleados";
+                "Panel Empleados";
+
+            lblTitulo.ForeColor =
+                Color.White;
 
             lblTitulo.Font =
                 new Font(
                     "Segoe UI",
-                    22,
+                    16,
                     FontStyle.Bold);
-
-            lblTitulo.Location =
-                new Point(260, 40);
 
             lblTitulo.AutoSize = true;
 
-            this.Controls.Add(lblTitulo);
+            lblTitulo.Location =
+                new Point(25, 40);
 
+            sidebar.Controls.Add(lblTitulo);
+
+            // =========================
             // TABLA
+            // =========================
 
-            dgvEmpleados = new DataGridView();
-
-            dgvEmpleados.Size =
-                new Size(850, 350);
+            dgvEmpleados =
+                new DataGridView();
 
             dgvEmpleados.Location =
-                new Point(260, 140);
+                new Point(250, 80);
+
+            dgvEmpleados.Size =
+                new Size(800, 450);
 
             dgvEmpleados.BackgroundColor =
                 Color.White;
@@ -98,24 +105,41 @@ namespace ProyectoPanelEmpleados.Presentacion
             dgvEmpleados.BorderStyle =
                 BorderStyle.None;
 
-            dgvEmpleados.EnableHeadersVisualStyles = false;
+            dgvEmpleados.AllowUserToAddRows =
+                false;
 
-            dgvEmpleados.ColumnHeadersDefaultCellStyle.BackColor =
-                ColorTranslator.FromHtml("#1E3A5F");
+            dgvEmpleados.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
 
-            dgvEmpleados.ColumnHeadersDefaultCellStyle.ForeColor =
-                Color.White;
+            dgvEmpleados.MultiSelect =
+                false;
 
             dgvEmpleados.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
 
-            dgvEmpleados.RowHeadersVisible = false;
+            dgvEmpleados.RowHeadersVisible =
+                false;
 
             dgvEmpleados.DefaultCellStyle.SelectionBackColor =
                 ColorTranslator.FromHtml("#DBEAFE");
 
             dgvEmpleados.DefaultCellStyle.SelectionForeColor =
                 Color.Black;
+
+            dgvEmpleados.ColumnHeadersDefaultCellStyle.BackColor =
+                ColorTranslator.FromHtml("#2563EB");
+
+            dgvEmpleados.ColumnHeadersDefaultCellStyle.ForeColor =
+                Color.White;
+
+            dgvEmpleados.ColumnHeadersDefaultCellStyle.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            dgvEmpleados.EnableHeadersVisualStyles =
+                false;
 
             dgvEmpleados.Columns.Add(
                 "Id",
@@ -126,29 +150,43 @@ namespace ProyectoPanelEmpleados.Presentacion
                 "Nombre");
 
             dgvEmpleados.Columns.Add(
-                "Tipo",
-                "Tipo");
+                "Contrato",
+                "Contrato");
 
             dgvEmpleados.Columns.Add(
                 "Salario",
-                "Salario");
+                "Salario Calculado");
+
+            // =========================
+            // COLUMNA OCULTA
+            // =========================
+
+            dgvEmpleados.Columns.Add(
+                "SalarioBase",
+                "Salario Base");
+
+            dgvEmpleados.Columns["SalarioBase"].Visible =
+                false;
 
             this.Controls.Add(dgvEmpleados);
 
+            // =========================
             // BOTÓN AGREGAR
+            // =========================
 
             btnAgregar = new Button();
 
-            btnAgregar.Text = "Agregar";
+            btnAgregar.Text =
+                "Agregar";
 
             btnAgregar.Size =
-                new Size(130, 45);
+                new Size(120, 40);
 
             btnAgregar.Location =
-                new Point(280, 540);
+                new Point(250, 560);
 
             btnAgregar.BackColor =
-                ColorTranslator.FromHtml("#3B82F6");
+                ColorTranslator.FromHtml("#10B981");
 
             btnAgregar.ForeColor =
                 Color.White;
@@ -156,28 +194,40 @@ namespace ProyectoPanelEmpleados.Presentacion
             btnAgregar.FlatStyle =
                 FlatStyle.Flat;
 
-            btnAgregar.FlatAppearance.BorderSize = 0;
+            btnAgregar.FlatAppearance.BorderSize =
+                0;
 
-            btnAgregar.Cursor = Cursors.Hand;
+            btnAgregar.Cursor =
+                Cursors.Hand;
 
-            btnAgregar.Click += BtnAgregar_Click;
+            btnAgregar.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            btnAgregar.Click +=
+                BtnAgregar_Click;
 
             this.Controls.Add(btnAgregar);
 
+            // =========================
             // BOTÓN EDITAR
+            // =========================
 
             btnEditar = new Button();
 
-            btnEditar.Text = "Editar";
+            btnEditar.Text =
+                "Editar";
 
             btnEditar.Size =
-                new Size(130, 45);
+                new Size(120, 40);
 
             btnEditar.Location =
-                new Point(430, 540);
+                new Point(390, 560);
 
             btnEditar.BackColor =
-                ColorTranslator.FromHtml("#10B981");
+                ColorTranslator.FromHtml("#3B82F6");
 
             btnEditar.ForeColor =
                 Color.White;
@@ -185,23 +235,37 @@ namespace ProyectoPanelEmpleados.Presentacion
             btnEditar.FlatStyle =
                 FlatStyle.Flat;
 
-            btnEditar.FlatAppearance.BorderSize = 0;
+            btnEditar.FlatAppearance.BorderSize =
+                0;
 
-            btnEditar.Cursor = Cursors.Hand;
+            btnEditar.Cursor =
+                Cursors.Hand;
+
+            btnEditar.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            btnEditar.Click +=
+                BtnEditar_Click;
 
             this.Controls.Add(btnEditar);
 
+            // =========================
             // BOTÓN ELIMINAR
+            // =========================
 
             btnEliminar = new Button();
 
-            btnEliminar.Text = "Eliminar";
+            btnEliminar.Text =
+                "Eliminar";
 
             btnEliminar.Size =
-                new Size(130, 45);
+                new Size(120, 40);
 
             btnEliminar.Location =
-                new Point(580, 540);
+                new Point(530, 560);
 
             btnEliminar.BackColor =
                 ColorTranslator.FromHtml("#EF4444");
@@ -212,29 +276,67 @@ namespace ProyectoPanelEmpleados.Presentacion
             btnEliminar.FlatStyle =
                 FlatStyle.Flat;
 
-            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatAppearance.BorderSize =
+                0;
 
-            btnEliminar.Cursor = Cursors.Hand;
+            btnEliminar.Cursor =
+                Cursors.Hand;
+
+            btnEliminar.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            btnEliminar.Click +=
+                BtnEliminar_Click;
 
             this.Controls.Add(btnEliminar);
 
-            btnEliminar.Click += BtnEliminar_Click;
-        }
-        private void BtnEliminar_Click(
-    object sender,
-    EventArgs e)
-        {
-            if (dgvEmpleados.SelectedRows.Count > 0)
-            {
-                int fila =
-                    dgvEmpleados.SelectedRows[0].Index;
+            // =========================
+            // BOTÓN LIQUIDACIÓN
+            // =========================
 
-                dgvEmpleados.Rows.RemoveAt(fila);
-            }
+            btnLiquidacion = new Button();
+
+            btnLiquidacion.Text =
+                "Liquidación";
+
+            btnLiquidacion.Size =
+                new Size(140, 40);
+
+            btnLiquidacion.Location =
+                new Point(670, 560);
+
+            btnLiquidacion.BackColor =
+                ColorTranslator.FromHtml("#8B5CF6");
+
+            btnLiquidacion.ForeColor =
+                Color.White;
+
+            btnLiquidacion.FlatStyle =
+                FlatStyle.Flat;
+
+            btnLiquidacion.FlatAppearance.BorderSize =
+                0;
+
+            btnLiquidacion.Cursor =
+                Cursors.Hand;
+
+            btnLiquidacion.Font =
+                new Font(
+                    "Segoe UI",
+                    10,
+                    FontStyle.Bold);
+
+            btnLiquidacion.Click +=
+                BtnLiquidacion_Click;
+
+            this.Controls.Add(btnLiquidacion);
         }
 
         private void BtnAgregar_Click(
-            object sender,
+            object? sender,
             EventArgs e)
         {
             EmployeeForm form =
@@ -242,13 +344,45 @@ namespace ProyectoPanelEmpleados.Presentacion
 
             if (form.ShowDialog() == DialogResult.OK)
             {
+                if (string.IsNullOrWhiteSpace(
+                        form.txtNombre.Text) ||
+
+                    string.IsNullOrWhiteSpace(
+                        form.txtSalario.Text) ||
+
+                    string.IsNullOrWhiteSpace(
+                        form.cbTipoContrato.Text))
+                {
+                    MessageBox.Show(
+                        "Complete todos los campos.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (!decimal.TryParse(
+                        form.txtSalario.Text,
+                        out decimal salario))
+                {
+                    MessageBox.Show(
+                        "Ingrese un salario válido.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
                 Empleado empleado =
                     EmpleadoFactory.CrearEmpleado(
                         form.cbTipoContrato.Text,
                         form.txtNombre.Text,
-                        decimal.Parse(form.txtSalario.Text));
+                        salario);
 
-                empleado.Id = contadorId++;
+                empleado.Id =
+                    contadorId++;
 
                 controller.RegistrarEmpleado(
                     empleado);
@@ -257,8 +391,161 @@ namespace ProyectoPanelEmpleados.Presentacion
                     empleado.Id,
                     empleado.Nombre,
                     form.cbTipoContrato.Text,
-                    empleado.CalcularSalario());
+                    empleado.CalcularSalario(),
+                    salario);
             }
+        }
+
+        private void BtnEditar_Click(
+            object? sender,
+            EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Seleccione un empleado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            DataGridViewRow fila =
+                dgvEmpleados.SelectedRows[0];
+
+            EmployeeForm form =
+                new EmployeeForm();
+
+            form.txtNombre.Text =
+                fila.Cells[1].Value?.ToString();
+
+            form.cbTipoContrato.Text =
+                fila.Cells[2].Value?.ToString();
+
+            // =========================
+            // USAR SALARIO BASE
+            // =========================
+
+            form.txtSalario.Text =
+                fila.Cells[4].Value?.ToString();
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                if (!decimal.TryParse(
+                        form.txtSalario.Text,
+                        out decimal salario))
+                {
+                    MessageBox.Show(
+                        "Ingrese un salario válido.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                Empleado empleadoEditado =
+                    EmpleadoFactory.CrearEmpleado(
+                        form.cbTipoContrato.Text,
+                        form.txtNombre.Text,
+                        salario);
+
+                fila.Cells[1].Value =
+                    empleadoEditado.Nombre;
+
+                fila.Cells[2].Value =
+                    form.cbTipoContrato.Text;
+
+                fila.Cells[3].Value =
+                    empleadoEditado.CalcularSalario();
+
+                // =========================
+                // GUARDAR NUEVO BASE
+                // =========================
+
+                fila.Cells[4].Value =
+                    salario;
+            }
+        }
+
+        private void BtnEliminar_Click(
+            object? sender,
+            EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count > 0)
+            {
+                int fila =
+                    dgvEmpleados
+                        .SelectedRows[0]
+                        .Index;
+
+                dgvEmpleados.Rows
+                    .RemoveAt(fila);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Seleccione un empleado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnLiquidacion_Click(
+            object? sender,
+            EventArgs e)
+        {
+            if (dgvEmpleados.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Seleccione un empleado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            DataGridViewRow fila =
+                dgvEmpleados.SelectedRows[0];
+
+            string nombre =
+                fila.Cells[1].Value?.ToString() ?? "";
+
+            string contrato =
+                fila.Cells[2].Value?.ToString() ?? "";
+
+            decimal salario =
+                Convert.ToDecimal(
+                    fila.Cells[3].Value);
+
+            decimal bonificacion = 0;
+
+            if (contrato != "Freelance")
+            {
+                bonificacion =
+                    salario * 0.10m;
+            }
+
+            decimal liquidacion =
+                salario + bonificacion;
+
+            string mensajeBonificacion =
+                contrato == "Freelance"
+                ? "No aplica para prestación de servicios"
+                : bonificacion.ToString("C");
+
+            MessageBox.Show(
+                $"Empleado: {nombre}\n\n" +
+                $"Contrato: {contrato}\n\n" +
+                $"Salario: {salario:C}\n" +
+                $"Bonificación: {mensajeBonificacion}\n" +
+                $"Liquidación: {liquidacion:C}",
+                "Liquidación",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }
