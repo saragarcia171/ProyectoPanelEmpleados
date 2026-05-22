@@ -29,12 +29,18 @@ Al ejecutar el programa, el usuario visualizará el panel principal del sistema.
 ### La interfaz contiene:
 
 Menú lateral de navegación
+
 Tabla de empleados registrados
+
 Botones de administración
+
 Formularios de registro y liquidación
+
 Interfaz principal
 
 La ventana principal permite visualizar todos los empleados registrados en el sistema.
+
+![Dashboard](img/dashboard.jpeg)
 
 ## Elementos disponibles
 | Elemento | Función |
@@ -51,7 +57,9 @@ La ventana principal permite visualizar todos los empleados registrados en el si
 El sistema permite registrar empleados de diferentes tipos de contrato:
 
 Tiempo completo
+
 Medio tiempo
+
 Freelance
 
 ## Pasos para registrar un empleado
@@ -64,7 +72,9 @@ Agregar
 El usuario deberá ingresar:
 
 Nombre del empleado
+
 Salario
+
 Tipo de contrato
 
 3. Seleccionar el tipo de contrato
@@ -80,9 +90,14 @@ Opciones disponibles:
 4. Presionar:
 Guardar
 
-5. Resultado
+![Formulario](img/formulario.jpeg)
+![Formulario](img/formulario2.jpeg)
+
+6. Resultado
 
 El empleado aparecerá automáticamente en la tabla principal del sistema.
+
+![Resultado](img/empleadoregistrado.jpeg)
 
 # Eliminación de empleados
 
@@ -101,12 +116,16 @@ Eliminar
 
 El empleado será removido de la tabla principal.
 
+![Eliminado](img/dashboard.jpeg)
+
 # Liquidación de empleados
 
 El sistema incluye un módulo para visualizar información relacionada con:
 
 Salario
+
 Bonificaciones
+
 Liquidación
 
 ## Funcionamiento de la liquidación
@@ -119,6 +138,7 @@ Dependiendo del tipo de contrato, el sistema calcula automáticamente:
 | Medio tiempo | Salario proporcional |
 | Freelance | Pago por servicio |
 
+![Liquidacion](img/liquidacion.jpeg)
 
 ## Cálculo salarial
 
@@ -126,20 +146,12 @@ El sistema utiliza programación orientada a objetos para calcular automáticame
 
 Cada tipo de empleado posee una lógica distinta de cálculo.
 
-Navegación del sistema
-Sidebar lateral
-
-El menú lateral permite acceder a:
-
-| Opción | Función |
-|---|---|
-| Inicio | Pantalla principal |
-| Empleados | Gestión de empleados |
-| Liquidaciones	| Visualización de pagos |
-
 ## Validaciones del sistema
 
 La aplicación valida información básica antes de registrar empleados.
+
+![Validacion1](img/salarioinvalido.jpeg)
+![Validacion2](img/validacionespacio.jpeg)
 
 #### Recomendaciones
 No dejar campos vacíos
@@ -166,6 +178,7 @@ Principios SOLID
 
 # Tecnologías utilizadas
 | Tecnología | Uso |
+|---|---|
 | C# | Lógica del sistema |
 | Windows Forms | Interfaz gráfica |
 | .NET 8 | Framework principal |
@@ -173,6 +186,7 @@ Principios SOLID
 
 # Posibles errores comunes
 | Problema | Solución |
+|---|---|
 | La aplicación no inicia	| Verificar instalación de .NET 8 |
 | Error al registrar empleado | Validar datos ingresados |
 | No aparecen empleados	| Revisar que se haya guardado correctamente |
@@ -180,8 +194,11 @@ Principios SOLID
 
 # Recomendaciones de uso
 Mantener actualizado el sistema
+
 Registrar información válida
+
 No modificar archivos internos del proyecto
+
 Utilizar la aplicación desde Windows
 
 
