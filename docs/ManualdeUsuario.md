@@ -14,11 +14,12 @@ El objetivo principal del sistema es centralizar la gestión básica del persona
 
 Para ejecutar correctamente la aplicación se recomienda:
 
-### Requisito	           ### Especificación
-Sistema operativo	        Windows 10 o superior
-Framework	                .NET 8
-Memoria RAM	                4 GB mínimo
-Resolución recomendada	    1366x768
+|Requisito | Especificación |
+|---|---|
+| Sistema operativo	| Windows 10 o superior |
+| Framework	| .NET 8 |
+| Memoria RAM	| 4 GB mínimo |
+| Resolución recomendada | 1366x768 |
 
 
 ## Inicio de la aplicación
@@ -36,13 +37,14 @@ Interfaz principal
 La ventana principal permite visualizar todos los empleados registrados en el sistema.
 
 ## Elementos disponibles
-### Elemento	               ### Función
-Sidebar lateral	                  Navegación general
-Tabla de empleados	              Visualiza la información registrada
-Botón Agregar	                  Registrar nuevo empleado
-Botón Editar	                  Modificar información
-Botón Eliminar	                  Eliminar empleado
-Módulo de liquidación	          Mostrar cálculos de pago
+| Elemento | Función |
+|---|---|
+| Sidebar lateral | Navegación general |
+| Tabla de empleados | Visualiza la información registrada |
+| Botón Agregar	| Registrar nuevo empleado |
+| Botón Editar	| Modificar información |
+| Botón Eliminar | Eliminar empleado |
+| Módulo de liquidación | Mostrar cálculos de pago |
 
 # Registro de empleados
 
@@ -69,10 +71,11 @@ Tipo de contrato
 
 Opciones disponibles:
 
-### Tipo	         ### Descripción
-Tiempo Completo        	Empleado con salario fijo mensual
-Medio Tiempo	        Empleado con jornada reducida
-Freelance	            Empleado por prestación de servicios
+| Tipo | Descripción | 
+|---|---|
+| Tiempo Completo | Empleado con salario fijo mensual |
+| Medio Tiempo | Empleado con jornada reducida | 
+| Freelance	| Empleado por prestación de servicios |
 
 4. Presionar:
 Guardar
@@ -110,10 +113,11 @@ Liquidación
 
 Dependiendo del tipo de contrato, el sistema calcula automáticamente:
 
-### Tipo de contrato	   ### Cálculos
-Tiempo completo	           Salario + bonificación + liquidación
-Medio tiempo	           Salario proporcional
-Freelance	               Pago por servicio
+| Tipo de contrato | Cálculos |
+|---|---|
+| Tiempo completo | Salario + bonificación + liquidación |
+| Medio tiempo | Salario proporcional |
+| Freelance | Pago por servicio |
 
 
 ## Cálculo salarial
@@ -127,10 +131,11 @@ Sidebar lateral
 
 El menú lateral permite acceder a:
 
-### Opción	                     ### Función
-Inicio	                         Pantalla principal
-Empleados	                     Gestión de empleados
-Liquidaciones	                 Visualización de pagos
+| Opción | Función |
+|---|---|
+| Inicio | Pantalla principal |
+| Empleados | Gestión de empleados |
+| Liquidaciones	| Visualización de pagos |
 
 ## Validaciones del sistema
 
@@ -152,25 +157,25 @@ Programación Orientada a Objetos
 Principios SOLID
 
 # Patrones de Diseño
-## Patrones implementados
-### Patrón	             ### Uso
-Factory Method	             Creación de empleados
-Repository	                 Gestión de datos
-Strategy	                 Cálculo de pagos
+### Patrones implementados
+| Patrón | Uso |
+|---|---|
+| Factory Method | Creación de empleados |
+| Repository | Gestión de datos |
+| Strategy | Cálculo de pagos |
 
 # Tecnologías utilizadas
-
-## Tecnología	            ## Uso
-C#	                          Lógica del sistema
-Windows Forms	              Interfaz gráfica
-.NET 8	                      Framework principal
-Git y GitHub	              Control de versiones
+| Tecnología | Uso |
+| C# | Lógica del sistema |
+| Windows Forms | Interfaz gráfica |
+| .NET 8 | Framework principal |
+| Git y GitHub | Control de versiones |
 
 # Posibles errores comunes
-## Problema	                                  ## Solución
-La aplicación no inicia	                      Verificar instalación de .NET 8
-Error al registrar empleado                   Validar datos ingresados
-No aparecen empleados	                      Revisar que se haya guardado correctamente
+| Problema | Solución |
+| La aplicación no inicia	| Verificar instalación de .NET 8 |
+| Error al registrar empleado | Validar datos ingresados |
+| No aparecen empleados	| Revisar que se haya guardado correctamente |
 
 
 # Recomendaciones de uso
