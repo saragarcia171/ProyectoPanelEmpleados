@@ -34,6 +34,17 @@ Administración por tipos de contrato
 | Medio Tiempo | Salario proporcional |
 | Freelance | Prestación de servicios sin bonificación |
 
+## Vista Principal
+
+![Dashboard](docs/img/dashboard.jpeg)
+
+## Registro de Empleados
+
+![Formulario](docs/img/formulario.jpeg)
+
+## Liquidación de Empleado
+
+![Liquidacion](docs/img/liquidacion.jpeg)
 
 ## Funcionalidades del sistema
 | Funcionalidad | Estado |
@@ -126,6 +137,7 @@ Botones estilizados
 Colores profesionales
 
 ## Estructura del proyecto
+```
 ProyectoPanelEmpleados/
 │
 ├── Controladores/
@@ -140,7 +152,7 @@ ProyectoPanelEmpleados/
 ├── Program.cs
 ├── ProyectoPanelEmpleados.csproj
 └── README.md
-
+```
 ## Diagramas y documentación
 
 Dentro de la carpeta:
